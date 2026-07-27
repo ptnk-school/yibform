@@ -15,7 +15,7 @@
 */
 
 const API_URL =
-  "ใส่_URL_APPS_SCRIPT_ตรงนี้?api=1";
+  "https://script.google.com/macros/s/AKfycbwwyuyN_5BqDlLEwJosFOnAcIZs85yiP0C2KP5I6NgEOYaqErvEG7YMJfR2jBK7ZB-z/exec";
 
 
 /* =========================================================
