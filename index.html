@@ -1,16 +1,422 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="หยิบฟอร์ม - ศูนย์รวม Checklist และแบบฟอร์มงานการเงิน"
+  >
 
   <title>หยิบฟอร์ม</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
-  <h1>📁 หยิบฟอร์ม</h1>
-  <p>หน้าเว็บพร้อมทำงานแล้ว 🎉</p>
+  <!-- ============================= -->
+  <!-- Background Decoration -->
+  <!-- ============================= -->
+
+  <div class="background-decoration decoration-one"></div>
+  <div class="background-decoration decoration-two"></div>
+
+
+  <!-- ============================= -->
+  <!-- Main -->
+  <!-- ============================= -->
+
+  <main class="page-container">
+
+
+    <!-- ============================= -->
+    <!-- Header -->
+    <!-- ============================= -->
+
+    <header class="hero">
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          📁
+        </div>
+
+        <div class="brand-text">
+
+          <h1 id="systemName">
+            หยิบฟอร์ม
+          </h1>
+
+          <p id="systemSubtitle">
+            หยิบง่าย โหลดไว ใช้ได้เลย
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Search -->
+
+      <div class="search-box">
+
+        <div class="search-icon">
+          🔎
+        </div>
+
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="ค้นหางาน เอกสาร หรือคำสำคัญ..."
+          autocomplete="off"
+        >
+
+        <button
+          type="button"
+          id="clearSearch"
+          class="clear-search"
+          aria-label="ล้างการค้นหา"
+        >
+          ×
+        </button>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- ============================= -->
+    <!-- News -->
+    <!-- ============================= -->
+
+    <section
+      class="news-section"
+      id="newsSection"
+    >
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-label">
+            NEWS
+          </span>
+
+          <h2>
+            📢 ข่าวประชาสัมพันธ์
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="newsArea"
+        class="news-container"
+      >
+
+        <div class="skeleton skeleton-news"></div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ============================= -->
+    <!-- Services -->
+    <!-- ============================= -->
+
+    <section class="services-section">
+
+
+      <div class="section-heading service-heading">
+
+        <div>
+
+          <span class="section-label">
+            SERVICES
+          </span>
+
+          <h2>
+            งานที่ให้บริการ
+          </h2>
+
+          <p>
+            เลือกหัวข้องานเพื่อดู Checklist เอกสารที่ต้องเตรียม
+          </p>
+
+        </div>
+
+
+        <div
+          class="result-count"
+          id="resultCount"
+        >
+          กำลังโหลด...
+        </div>
+
+      </div>
+
+
+
+      <!-- Category Filter -->
+
+      <div
+        class="category-filter"
+        id="categoryFilter"
+      >
+
+        <button
+          type="button"
+          class="filter-button active"
+          data-category="all"
+        >
+          ทั้งหมด
+        </button>
+
+      </div>
+
+
+
+      <!-- Menu Cards -->
+
+      <div
+        class="menu-grid"
+        id="menuArea"
+      >
+
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+
+      </div>
+
+
+
+      <!-- Empty Search -->
+
+      <div
+        class="empty-state"
+        id="emptyState"
+        hidden
+      >
+
+        <div class="empty-icon">
+          🔍
+        </div>
+
+        <h3>
+          ไม่พบงานที่ค้นหา
+        </h3>
+
+        <p>
+          ลองค้นหาด้วยชื่อเอกสารหรือคำสำคัญอื่น
+        </p>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ============================= -->
+    <!-- Footer -->
+    <!-- ============================= -->
+
+    <footer class="footer">
+
+      <div class="footer-brand">
+
+        <span>📁</span>
+
+        <strong>
+          หยิบฟอร์ม
+        </strong>
+
+      </div>
+
+      <p id="organization">
+        กลุ่มบริหารแผนงานและงบประมาณ
+      </p>
+
+    </footer>
+
+
+  </main>
+
+
+
+  <!-- ============================= -->
+  <!-- Checklist Modal -->
+  <!-- ============================= -->
+
+  <div
+    class="modal"
+    id="checklistModal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modal-backdrop"
+      data-close-modal
+    ></div>
+
+
+    <div
+      class="modal-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+
+
+      <!-- Modal Header -->
+
+      <div class="modal-header">
+
+        <div class="modal-title-area">
+
+          <div
+            class="modal-icon"
+            id="modalIcon"
+          >
+            📄
+          </div>
+
+          <div>
+
+            <span
+              class="modal-category"
+              id="modalCategory"
+            >
+              เบิกจ่าย
+            </span>
+
+            <h2 id="modalTitle">
+              รายการเอกสาร
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="modal-close"
+          id="modalClose"
+          aria-label="ปิด"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+
+      <!-- Modal Body -->
+
+      <div class="modal-body">
+
+        <div class="checklist-intro">
+
+          <h3>
+            Checklist เอกสาร
+          </h3>
+
+          <p>
+            ตรวจสอบเอกสารให้ครบก่อนดำเนินการ
+          </p>
+
+        </div>
+
+
+        <div
+          class="checklist"
+          id="checklistArea"
+        >
+        </div>
+
+      </div>
+
+
+
+      <!-- Modal Footer -->
+
+      <div class="modal-footer">
+
+        <button
+          type="button"
+          class="secondary-button"
+          id="closeButton"
+        >
+          ปิด
+        </button>
+
+
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="folder-button"
+          id="folderButton"
+        >
+          <span>📂</span>
+
+          เปิดโฟลเดอร์แบบฟอร์ม
+
+          <span class="button-arrow">
+            ↗
+          </span>
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ============================= -->
+  <!-- Error Message -->
+  <!-- ============================= -->
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+  >
+  </div>
+
+
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 
 </body>
+
 </html>
