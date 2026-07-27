@@ -226,79 +226,90 @@ function bindEvents() {
    6. LOAD API
    ========================================================= */
 
-async function loadData() {
+function loadData() {
 
-  try {
+  // ชื่อ callback ที่ Apps Script จะเรียกกลับมา
+  const callbackName = "receiveYibformData";
 
-    const response = await fetch(
-      API_URL,
-      {
-        method: "GET",
-        cache: "no-store"
-      }
-    );
+  // สร้าง script สำหรับเรียก API แบบ JSONP
+  const script = document.createElement("script");
 
+  script.src =
+    API_URL +
+    "&callback=" +
+    callbackName +
+    "&t=" +
+    Date.now();
 
-    if (!response.ok) {
+  script.id = "yibform-api-script";
 
-      throw new Error(
-        "HTTP " + response.status
-      );
+  script.onerror = function () {
 
-    }
+    console.error("โหลด Yibform API ไม่สำเร็จ");
 
+    showLoadError();
 
-    const data =
-      await response.json();
+    script.remove();
+  };
 
-
-    if (!data.success) {
-
-      throw new Error(
-        data.message ||
-        "Backend ไม่สามารถส่งข้อมูลได้"
-      );
-
-    }
+  document.body.appendChild(script);
+}
 
 
-    appData = {
+/**
+ * รับข้อมูลที่ส่งกลับมาจาก Apps Script
+ */
+function receiveYibformData(data) {
 
-      config:
-        data.config || {},
+  console.log("Yibform Data:", data);
 
-      news:
-        Array.isArray(data.news)
-          ? data.news
-          : [],
-
-      menu:
-        Array.isArray(data.menu)
-          ? data.menu
-          : [],
-
-      checklist:
-        data.checklist || {}
-
-    };
-
-
-    renderApp();
-
-
-  } catch (error) {
+  if (!data || !data.success) {
 
     console.error(
-      "Yibform API Error:",
-      error
+      "Backend Error:",
+      data
     );
 
     showLoadError();
 
+    return;
   }
 
-}
 
+  appData = {
+
+    config:
+      data.config || {},
+
+    news:
+      Array.isArray(data.news)
+        ? data.news
+        : [],
+
+    menu:
+      Array.isArray(data.menu)
+        ? data.menu
+        : [],
+
+    checklist:
+      data.checklist || {}
+
+  };
+
+
+  renderApp();
+
+
+  // ลบ script JSONP หลังโหลดเสร็จ
+  const apiScript =
+    document.getElementById(
+      "yibform-api-script"
+    );
+
+  if (apiScript) {
+    apiScript.remove();
+  }
+}
 
 /* =========================================================
    7. RENDER APP
