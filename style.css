@@ -1669,24 +1669,15 @@ body.modal-open {
    ========================================================= */
 
 .school-logo {
-  width: 88px;
-  height: 88px;
+  width: 96px !important;
+  height: 96px !important;
+
+  max-width: 96px !important;
+  max-height: 96px !important;
 
   object-fit: contain;
 
-  flex: 0 0 auto;
-}
-
-
-/* Tablet */
-
-@media (max-width: 980px) {
-
-  .school-logo {
-    width: 78px;
-    height: 78px;
-  }
-
+  flex: 0 0 96px;
 }
 
 
@@ -1695,8 +1686,13 @@ body.modal-open {
 @media (max-width: 640px) {
 
   .school-logo {
-    width: 62px;
-    height: 62px;
+    width: 72px !important;
+    height: 72px !important;
+
+    max-width: 72px !important;
+    max-height: 72px !important;
+
+    flex-basis: 72px;
   }
 
 }
