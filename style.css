@@ -1664,7 +1664,42 @@ body.modal-open {
 
 }
 
+/* =========================================================
+   School Logo
+   ========================================================= */
 
+.school-logo {
+  width: 88px;
+  height: 88px;
+
+  object-fit: contain;
+
+  flex: 0 0 auto;
+}
+
+
+/* Tablet */
+
+@media (max-width: 980px) {
+
+  .school-logo {
+    width: 78px;
+    height: 78px;
+  }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 640px) {
+
+  .school-logo {
+    width: 62px;
+    height: 62px;
+  }
+
+}
 /* =========================================================
    End
    ========================================================= */
